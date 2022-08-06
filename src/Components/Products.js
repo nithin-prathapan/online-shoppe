@@ -119,13 +119,14 @@ const Container = styled.div`
   padding: 30px;
   display grid;
   grid-gap: 25px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin:20px;
 
 
 `;
 const ProductDetails = styled.div`
-  width: 300px;
-  height: 400px;
+max-width:300px;
+ height:100%;
   border: 1px solid black;
   border-radius:4px;
   margin: 10px;
