@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 
@@ -14,10 +15,7 @@ function Products() {
           src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg"
           alt=""
         />
-        <AddToCart>
-            Add To Cart
-
-        </AddToCart>
+        <AddToCart>Add To Cart</AddToCart>
       </ProductDetails>
       <ProductDetails>
         <Description>
@@ -29,10 +27,7 @@ function Products() {
           src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg"
           alt=""
         />
-        <AddToCart>
-            Add To Cart
-
-        </AddToCart>
+        <AddToCart>Add To Cart</AddToCart>
       </ProductDetails>
       <ProductDetails>
         <Description>
@@ -44,10 +39,7 @@ function Products() {
           src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg"
           alt=""
         />
-        <AddToCart>
-            Add To Cart
-
-        </AddToCart>
+        <AddToCart>Add To Cart</AddToCart>
       </ProductDetails>
       <ProductDetails>
         <Description>
@@ -59,10 +51,7 @@ function Products() {
           src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg"
           alt=""
         />
-        <AddToCart>
-            Add To Cart
-
-        </AddToCart>
+        <AddToCart>Add To Cart</AddToCart>
       </ProductDetails>
       <ProductDetails>
         <Description>
@@ -74,10 +63,7 @@ function Products() {
           src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg"
           alt=""
         />
-        <AddToCart>
-            Add To Cart
-
-        </AddToCart>
+        <AddToCart>Add To Cart</AddToCart>
       </ProductDetails>
       <ProductDetails>
         <Description>
@@ -89,10 +75,7 @@ function Products() {
           src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg"
           alt=""
         />
-        <AddToCart>
-            Add To Cart
-
-        </AddToCart>
+        <AddToCart>Add To Cart</AddToCart>
       </ProductDetails>
       <ProductDetails>
         <Description>
@@ -104,10 +87,9 @@ function Products() {
           src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX569_.jpg"
           alt=""
         />
-        <AddToCart>
-            Add To Cart
-
-        </AddToCart>
+        <Link to={"/cart"}>
+          <AddToCart>Add To Cart</AddToCart>
+        </Link>
       </ProductDetails>
     </Container>
   );
@@ -125,10 +107,10 @@ const Container = styled.div`
 
 `;
 const ProductDetails = styled.div`
-max-width:300px;
- height:100%;
+  max-width: 300px;
+  height: 100%;
   border: 1px solid black;
-  border-radius:4px;
+  border-radius: 4px;
   margin: 10px;
   display: flex;
   flex-direction: column;
@@ -143,19 +125,17 @@ const Title = styled.div`
   margin-top: 10px;
 `;
 const Description = styled.div`
-display:flex;
-align-items:center;
-text-align:center;
-margin-top:10px;
-font-weight:600;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
 `;
-const AddToCart=styled.button`
-margin-top:10px;
-border:1px solid black;
-border-radius:4px;
-background-color: rgba(238, 238, 7);
-font-weight:700;
-width:40%;
-
-
-`
+const AddToCart = styled.button`
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: rgba(238, 238, 7);
+  font-weight: 700;
+  width: 40%;
+`;

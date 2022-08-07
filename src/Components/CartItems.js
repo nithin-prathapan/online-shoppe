@@ -16,7 +16,7 @@ function CartItems() {
           alt=""
         />
         <CheckoutBtn>
-            <button>Proceed To Checkout</button>
+          <button>Proceed To Checkout</button>
         </CheckoutBtn>
       </LeftSection>
     </Container>
@@ -54,16 +54,15 @@ const LeftSection = styled.div`
   }
 `;
 const CheckoutBtn = styled.div`
-display:flex;
-justify-content:center;
-button{
-   display:flex;
-   justify-content:center;
-   margin:20px;
-   border:1px solid black;
-   background:rgba(238, 238, 7);
-   font-weight:700;
-   border-radius:4px;
-}
-  
+  display: flex;
+  justify-content: center;
+  button {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    border: 1px solid black;
+    background: rgba(238, 238, 7);
+    font-weight: 700;
+    border-radius: 4px;
+  }
 `;
