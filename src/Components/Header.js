@@ -19,7 +19,7 @@ function Header() {
 
       <RightMenu>
         <a href="#">Orders</a>
-        <a href="#">Account</a>
+        <a href="/login">Account</a>
       </RightMenu>
     </Container>
   );
