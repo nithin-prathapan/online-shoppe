@@ -13,7 +13,7 @@ function Signup() {
     e.preventDefault();
     console.log(email, password);
     try {
-      const user = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         email,
         password
@@ -25,7 +25,6 @@ function Signup() {
         }
       });
 
-      console.log(user);
     } catch (error) {
       console.log(error.message);
     }
