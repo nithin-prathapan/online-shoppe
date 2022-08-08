@@ -1,20 +1,32 @@
 import React from "react";
 import styled from "styled-components";
+import { auth } from "../firebase/config";
+import { useState } from "react";
 
 function Signup() {
+    const [email,setEmail]=useState('')
+    const [name,setName]=useState('')
+    const [password,setPassword]=useState('')
+    const signup=()=>{
+        auth.createUserWithEmailAndPassword(email,password)
+        .then((result)=>{
+           console.log(result);
+        })
+
+    }
   return (
     <Container>
       <h2>Create a new account</h2>
       <SignupContainer>
         <h5>Enter Your Name</h5>
-        <input type="text" name="" id="" placeholder="Enter fullname" />
+        <input type="text" onChange={(e)=>setName(e.target.value)} name="" id="" placeholder="Enter fullname" />
         <h5>Enter Your Email</h5>
-        <input type="email" name="" id="" placeholder="Email" />
+        <input type="email" onChange={(e)=>setEmail(e.target.value)} name="" id="" placeholder="Email" />
         <h5>Enter New Password</h5>
-        <input type="password" name="" id="" placeholder="New Password" />
+        <input type="password" name="" onChange={(e)=>setPassword(e.target.value)} id="" placeholder="New Password" />
         <h5>Confirm Password</h5>
         <input type="password" name="" id="" placeholder="Confirm Password" />
-        <Button>SignUp</Button>
+        <Button onClick={signup}>SignUp</Button>
         <SignUpDiv>
           <p>
             already have an account?{" "}
