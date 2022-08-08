@@ -1,19 +1,51 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/config";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const login = async () => {
+    const login = await signInWithEmailAndPassword(auth, email, password);
+    console.log(login);
+    if (login) {
+      navigate("/home");
+    }
+  };
   return (
     <Container>
       <h2>User Login</h2>
       <LoginContainer>
         <h5>Enter your Email</h5>
-        <input type="email" name="" id="" placeholder="Email..." />
+        <input
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          type="email"
+          name=""
+          id=""
+          placeholder="Email..."
+        />
         <h5>Enter your Password</h5>
-        <input type="password" name="" id="" placeholder="Password..." />
-        <Button>Login</Button>
+        <input
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          type="password"
+          name=""
+          id=""
+          placeholder="Password..."
+        />
+        <Button onClick={login}>Login</Button>
         <SignUpDiv>
           <p>
-            Don't have an accoount? <a href="/signup">click here to create a new acount</a>
+            Don't have an accoount?{" "}
+            <a href="/signup">click here to create a new acount</a>
           </p>
         </SignUpDiv>
       </LoginContainer>
@@ -62,12 +94,10 @@ const Button = styled.button`
   border-radius: 5px;
 `;
 const SignUpDiv = styled.div`
-text-align:center;
-margin-top:0;
-font-size:10px;
-a{
-  color: rgb(10, 150, 255);;
-
-}
-
+  text-align: center;
+  margin-top: 0;
+  font-size: 10px;
+  a {
+    color: rgb(10, 150, 255);
+  }
 `;
