@@ -2,30 +2,73 @@ import React from "react";
 import styled from "styled-components";
 import { auth } from "../firebase/config";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 function Signup() {
-    const [email,setEmail]=useState('')
-    const [name,setName]=useState('')
-    const [password,setPassword]=useState('')
-    const signup=()=>{
-        auth.createUserWithEmailAndPassword(email,password)
-        .then((result)=>{
-           console.log(result);
-        })
+  let navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const signup = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      ).then((result) => {
+        if (result) {
+          navigate("/login");
+        } else {
+          alert("Please check your email or password is valid");
+        }
+      });
 
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
     }
+  };
   return (
     <Container>
       <h2>Create a new account</h2>
       <SignupContainer>
         <h5>Enter Your Name</h5>
-        <input type="text" onChange={(e)=>setName(e.target.value)} name="" id="" placeholder="Enter fullname" />
+        <input
+          value={name}
+          type="text"
+          onChange={(e) => setName(e.target.value)}
+          name=""
+          id=""
+          placeholder="Enter fullname"
+        />
         <h5>Enter Your Email</h5>
-        <input type="email" onChange={(e)=>setEmail(e.target.value)} name="" id="" placeholder="Email" />
+        <input
+          value={email}
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          name=""
+          id=""
+          placeholder="Email"
+        />
         <h5>Enter New Password</h5>
-        <input type="password" name="" onChange={(e)=>setPassword(e.target.value)} id="" placeholder="New Password" />
+        <input
+          value={password}
+          type="password"
+          name=""
+          onChange={(e) => setPassword(e.target.value)}
+          id=""
+          placeholder="New Password"
+        />
         <h5>Confirm Password</h5>
-        <input type="password" name="" id="" placeholder="Confirm Password" />
+        <input
+          value={password}
+          type="password"
+          name=""
+          id=""
+          placeholder="Confirm Password"
+        />
         <Button onClick={signup}>SignUp</Button>
         <SignUpDiv>
           <p>
