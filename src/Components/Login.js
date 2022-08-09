@@ -9,11 +9,13 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = async () => {
-    const login = await signInWithEmailAndPassword(auth, email, password);
-    console.log(login);
-    if (login) {
-      navigate("/home");
-    }
+     await signInWithEmailAndPassword(auth, email, password)
+     .then((result)=>{
+      if (result){
+        let user=result.user;
+        console.log(user);
+      }
+     })
   };
   return (
     <Container>
