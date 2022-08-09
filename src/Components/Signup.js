@@ -3,39 +3,58 @@ import styled from "styled-components";
 import { auth } from "../firebase/config";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  selectUserEmail,
+  selectUserStatus,
+  selectUserName,
+  setUserLogin,
+} from "../features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
 function Signup() {
+  const dispatch = useDispatch();
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [userName, setName] = useState("");
   const [password, setPassword] = useState("");
+
   const signup = async (e) => {
     e.preventDefault();
-    console.log(email, password);
     try {
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      ).then((result) => {
-        if (result) {
-          navigate("/login");
-        } else {
-          alert("Please check your email or password is valid");
+      createUserWithEmailAndPassword(auth, email, password, userName).then(
+        async (result) => {
+          console.log(result);
+          let user = result.user;
+          user.displayName = userName;
+          console.log(user);
+          if (user) {
+            dispatch(
+              setUserLogin({
+                userName: user.displayName,
+                email: user.email,
+                isLoggedIn: true,
+              })
+            );
+            navigate('/login')
+          }
+          else{
+            alert('user already exists')
+          }
         }
-      });
-
+      );
     } catch (error) {
-      console.log(error.message);
+      alert('User already exists')
     }
   };
+
   return (
     <Container>
       <h2>Create a new account</h2>
       <SignupContainer>
         <h5>Enter Your Name</h5>
         <input
-          value={name}
+          value={userName}
           type="text"
           onChange={(e) => setName(e.target.value)}
           name=""
