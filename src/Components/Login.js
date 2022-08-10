@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
-
 function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const navigate=useNavigate();
+    const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = async () => {
      await signInWithEmailAndPassword(auth, email, password)
      .then((result)=>{
       if (result){
         let user=result.user;
-        console.log(user);
+        console.log(user)
+        navigate('/home')
       }
      })
   };

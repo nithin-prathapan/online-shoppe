@@ -4,13 +4,10 @@ import { auth } from "../firebase/config";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  selectUserEmail,
-  selectUserStatus,
-  selectUserName,
-  setUserLogin,
+  setUserLogin
 } from "../features/user/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function Signup() {
   const dispatch = useDispatch();
