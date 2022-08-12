@@ -3,19 +3,24 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserLogin } from "../features/user/userSlice";
 function Login() {
-  const navigate=useNavigate();
-    const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const login = async () => {
-     await signInWithEmailAndPassword(auth, email, password)
-     .then((result)=>{
-      if (result){
-        let user=result.user;
-        console.log(user)
-        navigate('/home')
-      }
-     })
+  const login = () => {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((result) => {
+      dispatch(
+        setUserLogin({
+          email: email,
+          isLoggedIn: true,
+        })
+      );
+      navigate("/home");
+    });
   };
   return (
     <Container>
