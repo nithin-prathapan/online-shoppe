@@ -3,14 +3,9 @@ import styled from "styled-components";
 import { auth } from "../firebase/config";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  setUserLogin
-} from "../features/user/userSlice";
-import { useDispatch } from "react-redux";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function Signup() {
-  const dispatch = useDispatch();
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [userName, setName] = useState("");
@@ -20,31 +15,18 @@ function Signup() {
     e.preventDefault();
     try {
       createUserWithEmailAndPassword(auth, email, password, userName).then(
-        async (result) => {
-          console.log(result);
-          let user = result.user;
-          user.displayName = userName;
-          console.log(user);
-          if (user) {
-            dispatch(
-              setUserLogin({
-                userName: user.displayName,
-                email: user.email,
-                isLoggedIn: true,
-              })
-            );
-            navigate('/login')
-          }
-          else{
-            alert('user already exists')
+        (result) => {
+          if (result) {
+            navigate("/login");
+          } else {
+            alert("user already exists");
           }
         }
       );
     } catch (error) {
-      alert('User already exists')
+      alert("User already exists");
     }
   };
-
   return (
     <Container>
       <h2>Create a new account</h2>
